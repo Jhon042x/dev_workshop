@@ -359,28 +359,14 @@ class Geometria:
         Returns:
             tuple: Coeficientes (A, B, C) de la ecuación de la recta
         """
-        #calculamos primero la pendiente m
-        if x2 - x1 == 0: #recta vertical
+        if x1 == x2:
             return (1,0,-x1)
-        m= (y2-y1)/(x2-x1)
-        #calculamos b en la ecuacion de y=mx + b
-        b=y1 - m * x1
-        #convertimos a la forma ax + by + c = 0, de "y=mx + b" a "-mx + y - b = 0"
-        a = -m
-        b2=1
-        c = -b
-        if a!=0 and b2!=0 and c!=0:
-            factor=int(abs(c)/abs(c)) #normalizamos
-            a=int(a*factor)
-            b2=int(b2*factor)
-            c=int(c*factor)
-        if x1 == 1 and y1 == 1 and x2 == 3 and y2 == 3:
-            return (2,-2,0)
-        elif x1==-1 and y1 == -2 and x2 == 2 and y2==4:
-            return(-6,-3,0)
-        elif x1==1 and y1==5 and x2 == 5 and y2 ==5:
-            return (0,1,-5)
-        return (a,b2,c)
+        if y1==y2:
+            return (0,1,-y1)
+        A=y2-y1
+        B=x1-x2
+        C=(x2*y1)-(x1*y2)
+        return (A,B,C)
     
     def area_poligono_regular(self, num_lados, lado, apotema):
         """
@@ -394,9 +380,7 @@ class Geometria:
         Returns:
             float: Área del polígono regular
         """
-        if num_lados<3 or lado<=0 or apotema <= 0:
-            return 0
-        area=(num_lados*lado*apotema)/2
+        area=((num_lados*lado)*apotema)/2
         return round(area,2)
     
     def perimetro_poligono_regular(self, num_lados, lado):
