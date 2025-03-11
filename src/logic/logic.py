@@ -14,11 +14,10 @@ class Logica:
         Returns:
             bool: Resultado de a AND b
         """
-        if (a == a) or (b == b):
-            bool:True
+        if (a == True) and (b == True):
+            return True
         else:
-            bool:False
-        return bool
+            return False
     
     def OR(self, a, b):
         """
@@ -31,11 +30,10 @@ class Logica:
         Returns:
             bool: Resultado de a OR b
         """
-        if (a != b):
-            bool=True
+        if (a == False) and (b==False):
+            return False
         else:
-            bool=False
-        return bool
+            return True
     
     def NOT(self, a):
         """
