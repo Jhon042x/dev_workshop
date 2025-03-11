@@ -114,22 +114,18 @@ class Magic:
         Returns:
             list: Lista de listas que representa el triángulo de Pascal
         """
-        if n <= 0:
+        if filas < 0:
+            raise ValueError("Las filas no deben ser negativo")
+        if filas == 0:
             return []
-        
-        triangulo = [[1]]  # Fila 0: [1]
-        
-        for i in range(1, n):
-            prev_fila = triangulo[-1]
-            nueva_fila = [1]  # Siempre comienza con 1
-            
-            # Calculamos los elementos intermedios
+        triangulo = [[1]]
+        for i in range(1, filas):
+            prev = triangulo[-1]
+            nueva_fila = [1]
             for j in range(1, i):
-                nueva_fila.append(prev_fila[j-1] + prev_fila[j])
-            
-            nueva_fila.append(1)  # Siempre termina con 1
+                nueva_fila.append(prev[j-1] + prev[j])
+            nueva_fila.append(1)
             triangulo.append(nueva_fila)
-        
         return triangulo
     
     def factorial(self, n):
