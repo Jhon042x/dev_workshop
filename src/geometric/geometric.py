@@ -99,11 +99,14 @@ class Geometria:
         Returns:
             bool: True si los lados pueden formar un triángulo, False en caso contrario
         """
+        #verificamos que ningun lado sea negativo o cero
+        if lado1 <= 0 or lado2 <= 0 or lado3 <= 0:
+            return False
+        #verificamos la desigualdad triangular
         if ((lado1+lado2)>lado3) and ((lado1+lado3)>lado2) and ((lado2+lado3)>lado1):
-            bool:True
+            return True
         else:
-            bool:False
-        return bool
+            return False
     
     def area_trapecio(self, base_mayor, base_menor, altura):
         """
@@ -143,7 +146,12 @@ class Geometria:
         Returns:
             float: Área del pentágono regular
         """
-        return (lado*apotema)/2
+        #si el apotema es 0 o negativo el area es 0
+        if apotema <= 0:
+            return 0
+        #calculamos el area
+        area = (5*lado*apotema)/2
+        return round(area,2)
     
     def perimetro_pentagono_regular(self, lado):
         """
@@ -180,7 +188,12 @@ class Geometria:
         Returns:
             float: Perímetro del hexágono regular
         """
-        return 6*lado
+        #si la apotema es 0 o negativa, el area es 0
+        if apotema <= 0:
+            return 0
+        #calculamos el area
+        area=(6*lado*apotema)/2
+        return round(area,2)
     
     def volumen_cubo(self, lado):
         """
