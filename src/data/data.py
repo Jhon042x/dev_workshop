@@ -103,7 +103,7 @@ class Data:
         
         return resultado
     
-    def rotar_lista(self, lista, k):
+    def rotar_lista(self, lista, x):
         """
         Rota los elementos de una lista k posiciones a la derecha.
         
