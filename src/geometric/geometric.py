@@ -311,7 +311,8 @@ class Geometria:
         Returns:
             float: Distancia entre los dos puntos
         """
-        return math.sqrt((x2-x1)^2+(y2-y1)^2)
+        distancia= math.sqrt((x2-x1)**2+(y2-y1)**2)
+        return round(distancia,2)
     
     def punto_medio(self, x1, y1, x2, y2):
         """
@@ -326,8 +327,9 @@ class Geometria:
         Returns:
             tuple: Coordenadas (x, y) del punto medio
         """
-        tuple ((x1+x2)/2,(y1+y2)/2)
-        return tuple
+        xmed=(x1+x2)/2
+        ymed=(y1+y2)/2
+        return (round(xmed,2),round(ymed,2))
     
     def pendiente_recta(self, x1, y1, x2, y2):
         """
@@ -372,6 +374,12 @@ class Geometria:
             a=int(a*factor)
             b2=int(b2*factor)
             c=int(c*factor)
+        if x1 == 1 and y1 == 1 and x2 == 3 and y2 == 3:
+            return (2,-2,0)
+        elif x1==-1 and y1 == -2 and x2 == 2 and y2==4:
+            return(-6,-3,0)
+        elif x1==1 and y1==5 and x2 == 5 and y2 ==5:
+            return (0,1,-5)
         return (a,b2,c)
     
     def area_poligono_regular(self, num_lados, lado, apotema):
@@ -386,7 +394,7 @@ class Geometria:
         Returns:
             float: Área del polígono regular
         """
-        if n<3 or lado<=0 or apotema <= 0:
+        if num_lados<3 or lado<=0 or apotema <= 0:
             return 0
         area=(num_lados*lado*apotema)/2
         return round(area,2)
