@@ -176,7 +176,12 @@ class Geometria:
         Returns:
             float: Área del hexágono regular
         """
-        return ((5*lado)*apotema)/2
+        #si la apotema es 0 o negativa, el area es 0
+        if apotema <= 0:
+            return 0
+        #calculamos el area
+        area=(6*lado*apotema)/2
+        return round(area,2)
     
     def perimetro_hexagono_regular(self, lado):
         """
@@ -188,12 +193,12 @@ class Geometria:
         Returns:
             float: Perímetro del hexágono regular
         """
-        #si la apotema es 0 o negativa, el area es 0
-        if apotema <= 0:
+        #verificamos que el lado sea positivo
+        if lado <= 0:
             return 0
-        #calculamos el area
-        area=(6*lado*apotema)/2
-        return round(area,2)
+        #calculamos el perimetro
+        perimetro=6*lado
+        return perimetro
     
     def volumen_cubo(self, lado):
         """
@@ -217,7 +222,12 @@ class Geometria:
         Returns:
             float: Área de la superficie del cubo
         """
-        return 6*(lado)^2
+        #si el lado es 0 o negativo, el area es 0
+        if lado <= 0:
+            return 0
+        #calculamos el area
+        area= 6*(lado**2)
+        return round(area,2)
     
     def volumen_esfera(self, radio):
         """
@@ -229,7 +239,12 @@ class Geometria:
         Returns:
             float: Volumen de la esfera
         """
-        return (4/3)*math.pi*(radio)^3
+        #verificamos si el radio es menor o igual a 0, si es el caso el volumen es 0
+        if radio <= 0:
+            return 0
+        #calculamos el volumen
+        volumen = (4/3)*math.pi*(radio**3)
+        return round(volumen,2)
     
     def area_superficie_esfera(self, radio):
         """
@@ -241,7 +256,11 @@ class Geometria:
         Returns:
             float: Área de la superficie de la esfera
         """
-        return 4*math.pi*(radio)^2
+        #verificamos si el radio es menor o igual a 0, si es el caso el area es 0
+        if radio <= 0:
+            return 0
+        area=4*math.pi*(radio**2)
+        return round(area,2)
     
     def volumen_cilindro(self, radio, altura):
         """
@@ -254,7 +273,11 @@ class Geometria:
         Returns:
             float: Volumen del cilindro
         """
-        return math.pi*altura*(radio)^2
+        #verificamos si el radio o la altura es igual o menor a 0, si es el caso el volumen es 0
+        if radio <= 0 or altura <= 0:
+            return 0
+        volumen = math.pi*altura*(radio**2)
+        return round(volumen,2)
     
     def area_superficie_cilindro(self, radio, altura):
         """
@@ -267,7 +290,13 @@ class Geometria:
         Returns:
             float: Área de la superficie del cilindro
         """
-        return math.pi*(radio)^2
+        if radio <= 0:
+            return 0
+        if altura <= 0:
+            area=2*math.pi*(radio**2)
+            return round(area,2)
+        area= 2*math.pi*radio*altura+2*math.pi*(radio**2)
+        return round(area,2)
     
     def distancia_entre_puntos(self, x1, y1, x2, y2):
         """
@@ -328,7 +357,22 @@ class Geometria:
         Returns:
             tuple: Coeficientes (A, B, C) de la ecuación de la recta
         """
-        pass
+        #calculamos primero la pendiente m
+        if x2 - x1 == 0: #recta vertical
+            return (1,0,-x1)
+        m= (y2-y1)/(x2-x1)
+        #calculamos b en la ecuacion de y=mx + b
+        b=y1 - m * x1
+        #convertimos a la forma ax + by + c = 0, de "y=mx + b" a "-mx + y - b = 0"
+        a = -m
+        b2=1
+        c = -b
+        if a!=0 and b2!=0 and c!=0:
+            factor=int(abs(c)/abs(c)) #normalizamos
+            a=int(a*factor)
+            b2=int(b2*factor)
+            c=int(c*factor)
+        return (a,b2,c)
     
     def area_poligono_regular(self, num_lados, lado, apotema):
         """
@@ -342,7 +386,10 @@ class Geometria:
         Returns:
             float: Área del polígono regular
         """
-        return (num_lados*lado*apotema)/2
+        if n<3 or lado<=0 or apotema <= 0:
+            return 0
+        area=(num_lados*lado*apotema)/2
+        return round(area,2)
     
     def perimetro_poligono_regular(self, num_lados, lado):
         """
