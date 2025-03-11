@@ -59,13 +59,13 @@ class Data:
         Returns:
             list: Lista sin elementos duplicados
         """
-        if not lista:
-            return []
-        resultado = []
+        elim_duplicado = []
+        elementos_vistos = []
         for elemento in lista:
-            if elemento not in resultado:
-                resultado.append(elemento)
-        return resultado
+            if (elemento, type(elemento)) not in elementos_vistos:
+                elim_duplicado.append(elemento)
+                elementos_vistos.append((elemento, type(elemento)))
+        return elim_duplicado
     
     def merge_ordenado(self, lista1, lista2):
         """
@@ -116,12 +116,8 @@ class Data:
         """
         if not lista:
             return []
-        # Ajustamos el número de posiciones al módulo de la longitud
-        posiciones = posiciones % len(lista)
-        if posiciones == 0:
-            return lista.copy()
-        # Rotamos la lista
-        return lista[-posiciones:] + lista[:-posiciones]
+        x = x % len(lista)
+        return lista[-x:] + lista[ :-x] 
     
     def encuentra_numero_faltante(self, lista):
         """
