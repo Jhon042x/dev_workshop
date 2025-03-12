@@ -102,11 +102,7 @@ class Strings:
         Returns:
             str: Cadena con la primera letra de cada palabra en mayúscula
         """
-        if not texto:
-            return ""
-        # Dividimos por espacios, eliminamos espacios extra y convertimos a mayúsculas
-        palabras = [palabra.upper() for palabra in texto.split() if palabra]
-        return " ".join(palabras)
+        return  " ".join([palabra.capitalize() for palabra in texto.split(" ")])
     
     def eliminar_espacios_duplicados(self, texto):
         """
@@ -118,11 +114,9 @@ class Strings:
         Returns:
             str: Cadena sin espacios duplicados
         """
-        if not texto:
-            return ""
-        # Dividimos por espacios, eliminamos espacios extra y unimos con un solo espacio
-        palabras = [palabra for palabra in texto.split() if palabra]
-        return " ".join(palabras)
+        inicio = " " if texto.startswith(" ") else ""
+        fin = " " if texto.endswith(" ") else ""
+        return inicio + " ".join(texto.split()) + fin
     
     def es_numero_entero(self, texto):
         """
