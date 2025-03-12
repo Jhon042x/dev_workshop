@@ -14,7 +14,10 @@ class Strings:
         Returns:
             bool: True si es palíndromo, False en caso contrario
         """
-        pass
+        # Convertimos a minúsculas y eliminamos caracteres no alfanuméricos
+        cadena = ''.join(c.lower() for c in cadena if c.isalnum())
+        # Comparamos la cadena con su inversa
+        return cadena == cadena[::-1]
     
     def invertir_cadena(self, texto):
         """
@@ -26,7 +29,7 @@ class Strings:
         Returns:
             str: Cadena invertida
         """
-        pass
+        return ''.join(texto[i] for i in range(len(texto)-1, -1, -1))
     
     def contar_vocales(self, texto):
         """
@@ -38,7 +41,8 @@ class Strings:
         Returns:
             int: Número de vocales en la cadena
         """
-        pass
+        vocales = 'aeiou'
+        return sum(1 for c in texto.lower() if c in vocales)
     
     def contar_consonantes(self, texto):
         """
@@ -50,7 +54,8 @@ class Strings:
         Returns:
             int: Número de consonantes en la cadena
         """
-        pass
+        vocales = 'aeiou'
+        return sum(1 for c in texto.lower() if c.isalpha() and c not in vocales)
     
     def es_anagrama(self, texto1, texto2):
         """
@@ -63,7 +68,15 @@ class Strings:
         Returns:
             bool: True si son anagramas, False en caso contrario
         """
-        pass
+        # Convertimos a minúsculas y eliminamos espacios y caracteres no alfanuméricos
+        def limpiar_cadena(cadena):
+            return ''.join(c.lower() for c in cadena if c.isalnum())
+        
+        cadena1_limpia = limpiar_cadena(texto1)
+        cadena2_limpia = limpiar_cadena(texto2)
+        
+        # Verificamos si tienen la misma longitud y las mismas letras
+        return sorted(cadena1_limpia) == sorted(cadena2_limpia)
     
     def contar_palabras(self, texto):
         """
@@ -75,7 +88,11 @@ class Strings:
         Returns:
             int: Número de palabras en la cadena
         """
-        pass
+        if not texto or texto.isspace():
+            return 0
+        # Dividimos por espacios y filtramos cadenas vacías
+        palabras = [palabra for palabra in texto.split() if palabra]
+        return len(palabras)
     
     def palabras_mayus(self, texto):
         """
