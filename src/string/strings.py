@@ -14,10 +14,8 @@ class Strings:
         Returns:
             bool: True si es palíndromo, False en caso contrario
         """
-        # Convertimos a minúsculas y eliminamos caracteres no alfanuméricos
-        cadena = ''.join(c.lower() for c in cadena if c.isalnum())
-        # Comparamos la cadena con su inversa
-        return cadena == cadena[::-1]
+        texto = texto.replace(" ", "").lower()
+        return texto ==texto[::-1]
     
     def invertir_cadena(self, texto):
         """
@@ -104,7 +102,11 @@ class Strings:
         Returns:
             str: Cadena con la primera letra de cada palabra en mayúscula
         """
-        pass
+        if not texto:
+            return ""
+        # Dividimos por espacios, eliminamos espacios extra y convertimos a mayúsculas
+        palabras = [palabra.upper() for palabra in texto.split() if palabra]
+        return " ".join(palabras)
     
     def eliminar_espacios_duplicados(self, texto):
         """
@@ -116,7 +118,11 @@ class Strings:
         Returns:
             str: Cadena sin espacios duplicados
         """
-        pass
+        if not texto:
+            return ""
+        # Dividimos por espacios, eliminamos espacios extra y unimos con un solo espacio
+        palabras = [palabra for palabra in texto.split() if palabra]
+        return " ".join(palabras)
     
     def es_numero_entero(self, texto):
         """
@@ -128,7 +134,14 @@ class Strings:
         Returns:
             bool: True si la cadena representa un número entero, False en caso contrario
         """
-        pass
+        if not texto:
+            return False
+        # Verificamos si la cadena representa un número entero
+        try:
+            int(texto)  # Intentamos convertir a entero
+            return True
+        except ValueError:
+            return False
     
     def cifrar_cesar(self, texto, desplazamiento):
         """
